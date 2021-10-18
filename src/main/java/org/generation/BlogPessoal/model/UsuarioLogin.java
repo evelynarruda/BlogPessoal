@@ -2,7 +2,7 @@ package org.generation.BlogPessoal.model;
 
 public class UsuarioLogin {
 	
-	private String id;
+	private String idUsuario;
 	
 	private String nome;
 	
@@ -12,6 +12,14 @@ public class UsuarioLogin {
 	
 	private String token;
 
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -37,24 +45,18 @@ public class UsuarioLogin {
 		this.senha = senha;
 	}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getUsuario() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 }

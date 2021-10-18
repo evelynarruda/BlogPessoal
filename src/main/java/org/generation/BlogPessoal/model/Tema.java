@@ -1,5 +1,6 @@
 package org.generation.BlogPessoal.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,48 +9,45 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 
-	@Entity
-	@Table(name = "tb_tema")
-	public class Tema {
-	
-		@Id	
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private long id;
-		
-		@NotNull
-		private String descricao;
-		
-		@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
-		@JsonIgnoreProperties("tema")
-		private List<Postagem> postagem;
+import io.swagger.annotations.ApiModelProperty;
 
-		public long getId() {
-			return id;
-		}
+@Entity
+public class Tema {
 
-		public void setId(long id) {
-			this.id = id;
-		}
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long idTema;
+	private @NotBlank String tema;
 
-		public String getDescricao() {
-			return descricao;
-		}
+	@OneToMany(mappedBy = "temaRelacionado", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"temaRelacionado"})
+	@ApiModelProperty(hidden = true)
+	private List<Postagem> postagens = new ArrayList<>();
 
-		public void setDescricao(String descricao) {
-			this.descricao = descricao;
-		}
+	public Long getIdTema() {
+		return idTema;
+	}
 
-		public List<Postagem> getPostagem() {
-			return postagem;
-		}
+	public void setIdTema(Long idTema) {
+		this.idTema = idTema;
+	}
 
-		public void setPostagem(List<Postagem> postagem) {
-			this.postagem = postagem;
-		}
+	public String getTema() {
+		return tema;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
+
+	public List<Postagem> getPostagens() {
+		return postagens;
+	}
+
+	public void setPostagens(List<Postagem> postagens) {
+		this.postagens = postagens;
+	}
 
 }

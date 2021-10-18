@@ -1,12 +1,13 @@
-package org.generation.BlogPessoal.dtos;
+package org.generation.BlogPessoal.model.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UsuarioLoginDTO {
-	private @NotBlank @Email(message = "Digite um email válido") String email; //Login
-	private @NotBlank @Size(min = 5, max = 15, message = "Senha deve ter de 5 a 15 caracteres") String senha; //Login
+
+	private @NotBlank @Email(message = "Campo deve ser um email") String email; // Necessario Para Login
+	private @NotBlank @Size(min = 5, max = 15, message = "Senha deve ter de 5 a 15 caracteres") String senha; // Necessario Para Login
 
 	public String getEmail() {
 		return email;
@@ -23,6 +24,5 @@ public class UsuarioLoginDTO {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 
 }

@@ -3,7 +3,7 @@ package org.generation.BlogPessoal.controller;
 import java.util.List;
 
 import org.generation.BlogPessoal.model.Postagem;
-import org.generation.BlogPessoal.repository.PostagemRepository;
+import org.generation.BlogPessoal.repository.PostagemRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostagemController {
 	
 	@Autowired
-	private PostagemRepository repository;
+	private PostagemRepositorio repository;
 
-	public PostagemRepository getRepository() {
+	public PostagemRepositorio getRepository() {
 		return repository;
 	}
 
-	public void setRepository(PostagemRepository repository) {
+	public void setRepository(PostagemRepositorio repository) {
 		this.repository = repository; }
 	
 		@GetMapping

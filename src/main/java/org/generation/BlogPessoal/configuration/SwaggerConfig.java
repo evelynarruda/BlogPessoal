@@ -44,7 +44,7 @@ public class SwaggerConfig {
     }
     private static Contact contact() {
         return new Contact("Evelyn Arruda","https://github.com/evelynarruda/BlogPessoal.git",
-                "caique.bezerra@gmail.com");
+                "evelynarrudasilva@gmail.com");
     }
     private static List<Response> responseMessage() {
         return new ArrayList<Response>() {

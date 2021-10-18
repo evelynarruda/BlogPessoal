@@ -4,38 +4,36 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
-import org.generation.BlogPessoal.model.UsuarioModel;
+import org.generation.BlogPessoal.model.Usuario;
 import org.generation.BlogPessoal.model.UsuarioLogin;
-import org.generation.BlogPessoal.repository.UsuarioRepository;
+import org.generation.BlogPessoal.repository.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioRepositorio repositorio;
 
-	public UsuarioModel CadastrarUsuario(UsuarioModel usuario) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-		String senhaEncoder = encoder.encode(usuario.getSenha());
-		usuario.setSenha(senhaEncoder);
-
-		return repository.save(usuario);
+	public Optional<Object> cadastrarUsuario(UsuarioLogin usuario) {
+		return repositorio.findByEmail(usuario.getEmail()).map(usuarioExistente -> {
+			return Optional.empty();
+		}).orElseGet(() -> {
+			return Optional.ofNullable(repositorio.save(usuario));
+		});
 	}
 	
 	public Optional<UsuarioLogin> Logar(Optional<UsuarioLogin> user) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<UsuarioModel> usuario = repository.findByUsuario(user.get().getUsuario());
+		Optional<Usuario> usuario = repositorio.findByEmail(user.get().getEmail());
 
 		if (usuario.isPresent()) {
 			if (encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {
 
-				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
+				String auth = user.get().getEmail() + ":" + user.get().getSenha();
 				byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 				String authHeader = "Basic " + new String(encodedAuth);
 

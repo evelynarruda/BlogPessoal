@@ -3,7 +3,7 @@ package org.generation.BlogPessoal.security;
 import java.util.Collection;
 import java.util.List;
 
-import org.generation.BlogPessoal.model.UsuarioModel;
+import org.generation.BlogPessoal.model.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,12 +11,12 @@ public class UserDetailsImpl implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 
-	private String userName;
+	private String email;
 	private String password;
 	private List<GrantedAuthority> authorities;
 
-	public UserDetailsImpl(UsuarioModel user) {
-		this.userName = user.getUsuario();
+	public UserDetailsImpl(Usuario user) {
+		this.email = user.getEmail();
 		this.password = user.getSenha();		
 	}
 
@@ -35,7 +35,7 @@ public class UserDetailsImpl implements UserDetails{
 	@Override
 	public String getUsername() {
 
-		return userName;
+		return email;
 	}
 
 	@Override
@@ -56,5 +56,13 @@ public class UserDetailsImpl implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
