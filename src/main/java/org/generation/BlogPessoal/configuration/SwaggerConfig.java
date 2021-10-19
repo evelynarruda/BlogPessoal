@@ -23,7 +23,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("org.generation.blogPessoal.controller"))
+                        .basePackage("org.generation.BlogPessoal.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metadata())

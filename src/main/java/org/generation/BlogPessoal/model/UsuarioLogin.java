@@ -1,8 +1,10 @@
 package org.generation.BlogPessoal.model;
 
+import java.util.Optional;
+
 public class UsuarioLogin {
 	
-	private String idUsuario;
+	private Long idUsuario;
 	
 	private String nome;
 	
@@ -11,6 +13,15 @@ public class UsuarioLogin {
 	private String senha;
 	
 	private String token;
+
+	
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	
 	public String getEmail() {
@@ -29,13 +40,7 @@ public class UsuarioLogin {
 		this.nome = nome;
 	}
 
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
+	
 
 	public String getSenha() {
 		return senha;
@@ -45,18 +50,24 @@ public class UsuarioLogin {
 		this.senha = senha;
 	}
 
+	public String getToken() {
+		return token;
+	}
 
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-	public String getUsuario() {
+	public Usuario get() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String getIdUsuario() {
-		return idUsuario;
+	public Optional<Object> map(Object object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
-	}
+	
+	
 }
